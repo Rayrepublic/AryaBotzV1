@@ -3,13 +3,13 @@ import chalk from 'chalk'
 import { fileURLToPath } from 'url'
 
 global.owner = [
-  ['59172945992', 'FG98', true],
-  ['5492622271736'], 
-  ['5492622271736'] 
+  ['6283199346086', 'Ray', true],
+  ['6283127962809'], 
+  ['6281934502364'] 
 ] //Numeros de owner 
 
-global.mods = ['573125484672'] 
-global.prems = ['50489079501', '5219631769130', '573125484672']
+global.mods = ['6283199346086'] 
+global.prems = ['6283199346086', '6283127962809', '6281934502364']
 global.APIs = { // API Prefix
   // name: 'https://website'
   xteam: 'https://api.xteam.xyz', 
@@ -25,16 +25,16 @@ global.APIKeys = { // APIKey Here
 }
 
 // Sticker WM
-global.packname = 'DyLux┃ᴮᴼᵀ' 
-global.author = '@fg98' 
-global.fgig = '▢ Sígueme en Instagram\nhttps://www.instagram.com/fg98_ff\n' 
-global.dygp = 'https://chat.whatsapp.com/IO9jmpI72ejHiN4unRZleU'
-global.fgsc = 'https://github.com/FG98F/dylux-fg' 
-global.fgyt = 'https://youtube.com/fg98f'
-global.fgpyp = 'https://paypal.me/fg98f'
-global.fglog = 'https://i.imgur.com/Owmb93c.png' 
+global.packname = 'AryaBot' 
+global.author = 'RayXD' 
+global.fgig = 'Instagram\nhttps://www.instagram.com/ray.anakbaek_' 
+global.dygp = '-'
+global.fgsc = 'https://github.com/Rayrepublic' 
+global.fgyt = '-'
+global.fgpyp = '-'
+global.fglog = 'https://telegra.ph/file/4df2b5a15c344b05aacb3.jpg' 
 
-global.wait = '*⌛ _Cargando..._*\n*▰▰▰▱▱▱▱▱*'
+global.wait = '*⌛ Mohon Tunggu Sebentar'
 global.rwait = '⌛'
 global.dmoji = '🤭'
 global.done = '✅'

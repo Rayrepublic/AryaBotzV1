@@ -87,13 +87,13 @@ let { version, isLatest } = await fetchLatestBaileysVersion()
   printQRInTerminal: true,
   auth: state,
   logger: pino({ level: 'silent'}),
-  browser: ['dylux-bot','Safari','1.0.0']
+  browser: ['AryaBot','Safari','1.0.0']
 }*/ 
 const connectionOptions = {
 	    version,
         printQRInTerminal: true,
         auth: state,
-        browser: ['dylux-bot', 'Safari', '3.1.0'], 
+        browser: ['AryaBot', 'Safari', '3.1.0'],
 	      patchMessageBeforeSending: (message) => {
                 const requiresPatch = !!(
                     message.buttonsMessage 
@@ -177,100 +177,29 @@ global.reloadHandler = async function (restatConn) {
   } catch (e) {
     console.error(e)
   }
-  if (restatConn) {
+jika (restatConn) {
     const oldChats = global.conn.chats
-    try { global.conn.ws.close() } catch { }
-    conn.ev.removeAllListeners()
-    global.conn = makeWASocket(connectionOptions, { chats: oldChats })
-    isInit = true
+    coba { global.conn.ws.close() } tangkap {} }
+    samb.ev.removeAllListeners()
+    global.conn = makeWASocket(connectionOptions, { obrolan: oldChats })
+    isInit = benar
   }
-  if (!isInit) {
-    conn.ev.off('messages.upsert', conn.handler)
+  jika (!isInit) {
+    samb.ev.off('pesan.upsert', samb.handler)
     conn.ev.off('group-participants.update', conn.participantsUpdate)
-    conn.ev.off('groups.update', conn.groupsUpdate)
-    conn.ev.off('message.delete', conn.onDelete)
-    conn.ev.off('connection.update', conn.connectionUpdate)
-    conn.ev.off('creds.update', conn.credsUpdate)
+    samb.ev.off('groups.update', samb.groupsUpdate)
+    samb.ev.off('pesan.hapus', samb.onDelete)
+    samb.ev.off('koneksi.update', samb.koneksiUpdate)
+    samb.ev.off('creds.update', samb.credsUpdate)
   }
 
-  conn.welcome = 'Hola, @user\nBienvenido a @group'
-  conn.bye = 'adiós @user'
-  conn.spromote = '@user promovió a admin'
-  conn.sdemote = '@user degradado'
-  conn.sDesc = 'La descripción ha sido cambiada a \n@desc'
-  conn.sSubject = 'El nombre del grupo ha sido cambiado a \n@group'
-  conn.sIcon = 'El icono del grupo ha sido cambiado'
-  conn.sRevoke = 'El enlace del grupo ha sido cambiado a \n@revoke'
-  conn.handler = handler.handler.bind(global.conn)
-  conn.participantsUpdate = handler.participantsUpdate.bind(global.conn)
-  conn.groupsUpdate = handler.groupsUpdate.bind(global.conn)
-  conn.onDelete = handler.deleteUpdate.bind(global.conn)
-  conn.connectionUpdate = connectionUpdate.bind(global.conn)
-  conn.credsUpdate = saveCreds.bind(global.conn, true)
-
-  conn.ev.on('messages.upsert', conn.handler)
-  conn.ev.on('group-participants.update', conn.participantsUpdate)
-  conn.ev.on('groups.update', conn.groupsUpdate)
-  conn.ev.on('message.delete', conn.onDelete)
-  conn.ev.on('connection.update', conn.connectionUpdate)
-  conn.ev.on('creds.update', conn.credsUpdate)
-  isInit = false
-  return true
-}
-
-const pluginFolder = global.__dirname(join(__dirname, './plugins/index'))
-const pluginFilter = filename => /\.js$/.test(filename)
-global.plugins = {}
-async function filesInit() {
-  for (let filename of readdirSync(pluginFolder).filter(pluginFilter)) {
-    try {
-      let file = global.__filename(join(pluginFolder, filename))
-      const module = await import(file)
-      global.plugins[filename] = module.default || module
-    } catch (e) {
-      conn.logger.error(e)
-      delete global.plugins[filename]
-    }
-  }
-}
-filesInit().then(_ => console.log(Object.keys(global.plugins))).catch(console.error)
-
-global.reload = async (_ev, filename) => {
-  if (pluginFilter(filename)) {
-    let dir = global.__filename(join(pluginFolder, filename), true)
-    if (filename in global.plugins) {
-      if (existsSync(dir)) conn.logger.info(`🌟 Plugin Actualizado - '${filename}'`)
-      else {
-        conn.logger.warn(`🗑️ Plugin Eliminado - '${filename}'`)
-        return delete global.plugins[filename]
-      }
-    } else conn.logger.info(`✨ Nuevo plugin - '${filename}'`)
-    let err = syntaxerror(readFileSync(dir), filename, {
-      sourceType: 'module',
-      allowAwaitOutsideFunction: true
-    })
-    if (err) conn.logger.error(`syntax error while loading '${filename}'\n${format(err)}`)
-    else try {
-      const module = (await import(`${global.__filename(dir)}?update=${Date.now()}`))
-      global.plugins[filename] = module.default || module
-    } catch (e) {
-      conn.logger.error(`error require plugin '${filename}\n${format(e)}'`)
-    } finally {
-      global.plugins = Object.fromEntries(Object.entries(global.plugins).sort(([a], [b]) => a.localeCompare(b)))
-    }
-  }
-}
-Object.freeze(global.reload)
-watch(pluginFolder, global.reload)
-await global.reloadHandler()
-
-// Quick Test
-async function _quickTest() {
-  let test = await Promise.all([
-    spawn('ffmpeg'),
-    spawn('ffprobe'),
-    spawn('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-filter_complex', 'color', '-frames:v', '1', '-f', 'webp', '-']),
-    spawn('convert'),
+  conn.welcome = 'Selamat datang @pengguna di \n•@grup\n—— *deskripsi* ——\n@desc'
+  conn.bye = 'Bye @user\n Kami Menantikan Kehadiranmu di kemudian hari :)'
+  conn.spromote = '@pengguna telah naik jabatan menjadi Admin'
+  conn.sdemote = 'Jabatan @user Telah Turun Menjadi *anggota*'
+  samb.sDesc = 'Deskripsi Grup Telah Di ubah menjadi\n@desc'
+  conn.sSubject = 'Nama grup telah berubah ke \n@grup'
+  conn.sIcon = 'Ikon grup telah berubah' 
     spawn('magick'),
     spawn('gm'),
     spawn('find', ['--version'])

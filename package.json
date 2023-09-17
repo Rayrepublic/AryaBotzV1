@@ -26,16 +26,16 @@
         "MD",
         "baileys-md"
     ],
-    "homepage": "https://github.com/FG98F/dylux-fg",
+    "homepage": "https://github.com/Rayrepublic/AryaBotzV1",
     "author": {
-        "name": "FG98"
+        "name": "Ray"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/FG98F/dylux-bot.git"
+        "url": "git+https://github.com/Rayrepublic/AryaBotzV1.git"
     },
     "bugs": {
-        "url": "https://github.com/FG98F/dylux-bot/issues"
+        "url": "https://github.com/Rayrepublic/AryaBotzV1/issues"
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {

@@ -28,27 +28,28 @@ let tags = {
 }
 const defaultMenu = {
   before: `
-◈ ━━━━━ *DyLux  ┃ ᴮᴼᵀ* ━━━━━ ◈
- 
-👋🏻 _Hola_ *%name*
-🧿 Nivel : *%level* 
-👥 Usuarios : %totalreg
-📈 Tiempo activo : %muptime
-─────────────
-▢ Crea tu propio bot 
-• https://youtu.be/xFqjKN1Qt80
-▢ Descarga *FGWhatsApp*
-• https://fgmods.xyz
-─────────────
+Haii👋 Perkenalkan saya AryaBot Yang Dibuat oleh Ray\nAku Adalah bot whatsapp Otomatis Mengunakan Node.js! Bot ini Bisa membuat Stiker, mencari informasi, dan fun game
+
+ ⿻ INFORMASI ANDA! 
+NAMA : *%name*
+LEVEL : *%level* 
+XP : %exp | %xp
+
+ ⿻ INFORMASI BOT
+NAMEBOT : %me
+DATABASE : %totalreg
+VERSION : %_package.version
+RUNTIME : %uptime
+──────────────────────
 %readmore
 Ⓟ = Premium
 ⓓ = Diamantes
------  -----  -----  -----  -----
-  ≡ *LISTA DE MENUS*
+████ ████ ████ ████
+  ≡ *MENU*
 `.trimStart(),
-  header: '┌─⊷ *%category*',
-  body: '▢ %cmd %isdiamond %isPremium',
-  footer: '└───────────\n',
+  header: '⿻ *%category*',
+  body: ' %cmd %isdiamond %isPremium',
+  footer: '',
   after: `
 `,
 }
@@ -149,16 +150,21 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
     
-    let pp = './src/fg_logo.jpg'
-     
-    conn.sendFile(m.chat, pp, 'menu.jpg', text.trim(), m, null, rpl)
-    /*conn.sendButton(m.chat, text.trim(), '▢ DyLux  ┃ ᴮᴼᵀ\n▢ Sígueme en Instagram\nhttps://www.instagram.com/fg98_ff', pp, [
-      ['ꨄ︎ Apoyar', `${_p}donate`],
-      ['⏍ Info', `${_p}botinfo`],
-      ['⌬ Grupos', `${_p}gpdylux`]
-    ],m, rpl)*/
+    let fkon = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
+ let fotonya = 'https://telegra.ph/file/a6249930c5fbed2b23c27.jpg' //*Foto Baju Merah+baring
+ conn.sendMessage(m.chat, {
+text: text,
+contextInfo: {
+externalAdReply: {
+title: ucapan(),
+body: wm,
+thumbnailUrl: fotonya,
+sourceUrl: sgh,
+mediaType: 1,
+renderLargerThumbnail: true
+}}}, { quoted: fkon})
   
-    m.react('📚') 
+    m.react('🔒') 
     
   } catch (e) {
     conn.reply(m.chat, '❎ Lo sentimos, el menú tiene un error', m)
@@ -184,3 +190,19 @@ function clockString(ms) {
   let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [d, 'd ', h, 'h ', m, 'm '].map(v => v.toString().padStart(2, 0)).join('')
 }
+function ucapan() {
+  const time = moment.tz('Asia/Jakarta').format('HH')
+  let res = "Kok Belum Tidur Kak? 🥱"
+  if (time >= 4) {
+    res = "Pagi Kak 🌄"
+  }
+  if (time >= 10) {
+    res = "Siang Kak ☀️"
+  }
+  if (time >= 15) {
+    res = "Sore Kak 🌇"
+  }
+  if (time >= 18) {
+    res = "Malam Kak 🌙"
+  }
+  return res

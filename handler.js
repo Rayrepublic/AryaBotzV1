@@ -558,10 +558,9 @@ export async function deleteUpdate(message) {
             return
         await this.reply(msg.chat, `
 ≡ Borró un mensaje  
-┌─⊷  𝘼𝙉𝙏𝙄 𝘿𝙀𝙇𝙀𝙏𝙀 
-▢ *Nombre :* @${participant.split`@`[0]} 
-└─────────────
-Para desactivar esta función, escriba 
+ 𝘼𝙉𝙏𝙄 𝘿𝙀𝙇𝙀𝙏𝙀 
+ *DARI :* @${participant.split`@`[0]} 
+Untuk Mengnonaktifkan antidelete ketik/n
 */off antidelete*
 *.enable delete*
 `.trim(), msg, {
@@ -575,20 +574,21 @@ Para desactivar esta función, escriba
 
 global.dfail = (type, m, conn) => {
     let msg = {
-        rowner: '👑 Este comando solo puede ser utilizado por el *Creador del bot*',
-        owner: '🔱 Este comando solo puede ser utilizado por el *Dueño del Bot*',
-        mods: '🔰  Esta función es solo para *Para moderadores del Bot*',
-        premium: '💠 Este comando es solo para miembros *Premium*\n\nEscribe */premium* para más info',
-        group: '⚙️ ¡Este comando solo se puede usar en grupos!',
-        private: '📮 Este comando solo se puede usar en el chat *privado del Bot*',
-        admin: '🛡️ Este comando es solo para *Admins* del grupo',
-        botAdmin: '💥 ¡Para usar este comando debo ser *Administrador!*',
-        unreg: '📇 Regístrese para usar esta función  Escribiendo:\n\n*/reg nombre.edad*\n\n📌Ejemplo : */reg dylux.16*',
-        restrict: '🔐 Esta característica está *deshabilitada*'
+        rowner: '${global.danied}\nFitur Ini Khusus Developer Ku! ',
+        owner: '${global.danied}\nFitur ini Khusus Owner ku',
+        mods: '${global.danied}\nFitur ini Khusus Moderator ku',
+        premium: '{global.danied}\nFitur ini Khusus Premium',
+        group: '{global.danied}\nFitur ini Khusus grups!',
+        private: '{global.danied}\nFitur ini Khusus Di chat private',
+        admin: '{global.danied}\nFitur ini Khusus Admins grup',
+        botAdmin: 'Jadikan Arya Admin Grup Untuk Menggunakan Fitur ini'
+        restrict: 'Fitur Ini Di restrict Oleh Owner ku! '
     }[type]
     if (msg) return m.reply(msg)
-}
-
+    let msh = {
+        unreg: 'Hai, Kamu Perlu registrasi Ke dalam Databaseku agar Bisa menggunakan Fitur ku'
+    }[type]
+    if (msg) return m.reply(msg)
 let file = global.__filename(import.meta.url, true)
 watchFile(file, async () => {
     unwatchFile(file)
